@@ -1,11 +1,4 @@
-// 1 add photos and imput out photos to html
-// 2 have a answer for each file and then compare the inner.html with . click 
 
-// option1.addEventListner(click,function(){
-//     if(option1.innerText === answer){
-//         function here
-//     }
-// })
 
 const option1 = document.querySelector('.option1');
 const option2 = document.querySelector('.option2');
@@ -24,6 +17,7 @@ const flags = [
     "images/argentina.jpeg",
     "images/brazil.jpeg",
     "images/canada.jpeg",
+    "images/denmark.jpeg",
     // "images/js.png",
     // "images/vue.jpeg",
 ];
@@ -31,12 +25,15 @@ const flags = [
 const countries =  [
     "Argentina", "Aruba,","Antactica" ,
     "Brown", "Brazil", "Belgium", 
-    "Call", "Car", "Canada", "Allow",
+    "Call", "Car", "Canada", 
+    "Dreamland", "Denmark", "Djibouti",
 
 ]
 
 const answer1 = 'Argentina';
 const answer2 = 'Brazil';
+const answer3 = 'Canada';
+const answer4 = 'Denmark';
 //    {option1:"Argentina",option2: "Aruba", option3:"Antactica"} 
    
 
@@ -57,10 +54,11 @@ const answer2 = 'Brazil';
         if(countryIndex >= countries.length){
             countryIndex = 0;
         }
-        console.log('hehehe',countries[0]);
+        // console.log('hehehe',countries[0]);
           option1.innerHTML = countries[0];
          option2.innerHTML = countries[1];
         option3.innerHTML = countries[2];
+        option3.innerHTML = countries[3];
     };
 
    function loadOptionsB(){
@@ -77,19 +75,28 @@ const answer2 = 'Brazil';
        nextFlag();
    }
 
+   function loadOptionsD(){
+    option1.innerHTML = countries[9];
+       option2.innerHTML = countries[10];
+       option3.innerHTML = countries[11];
+       nextFlag();
+   }
+
+
     
    
-
-// start.addEventListner(start)
-
+// START GAME
 start.addEventListener('click',function(){
    
-    console.log('hello',countries[0]);
+    // console.log('hello',countries[0]);
    option1.innerHTML = countries[0];
    option2.innerHTML = countries[1];
    option3.innerHTML = countries[2];
 
 })
+
+
+// checking for options to display wrong answer message
 
 function checkOpt2(){
     option2.addEventListener('click',function(){
@@ -109,28 +116,32 @@ function checkOpt3(){
    
    
 
-
+// Adding event listeners to options for option 1
 option1.addEventListener('click',function(){
     if(option1.innerHTML === answer1){
         console.log('correct'); 
-        console.log('wrong')
         loadOptionsB()
         console.log('option B loaded');
-
-        
      
     }else{
-        console.log('correct')
-
-        console.log('wrong');
-        checkOpt2();
+       
 
     }
 })
+// Checking for other options
+function checkOpt1(){
+    option1.addEventListener('click',function(){
+        if(option3.innerHTML !== answer1){
+            console.log('wrong');
+        } 
+      }) 
+}
+   
 
 checkOpt2();
 checkOpt3();
 
+// Adding event listeners to options 2 and 3
 option2.addEventListener('click',function(){
        if(option2.innerHTML == answer2){
             console.log('correct');
@@ -139,8 +150,34 @@ option2.addEventListener('click',function(){
         }
 })
 
-//checkOpt2();
+checkOpt1();
 checkOpt3();
+
+option3.addEventListener('click',function(){
+    if(option3.innerHTML == answer3){
+         console.log('correct');
+         loadOptionsD()
+         console.log('option D loaded');
+     }
+})
+
+checkOpt1();
+checkOpt2();
+
+option2.addEventListener('click',function(){
+    if(option2.innerHTML == answer4){
+         console.log('denmark correct');
+        //  loadOptionsD()
+         console.log('option E will be loaded');
+     }
+})
+
+
+// stopped here so i can work on the next part wanted to test if i could get the next Denmark flag to load with option 2  I am still working on the repeted errors console.log'wrong message' and bugs
+checkOpt1();
+checkOpt2();
+
+
 
 
 
